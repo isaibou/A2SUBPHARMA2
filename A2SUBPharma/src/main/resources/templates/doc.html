@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+		<meta charset="utf-8" />
+		<title>Commandes </title>
+		<meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
+		<link rel="stylesheet" href="../libs/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+		<link rel="stylesheet" href="../libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
+		<link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
+		<link href='../libs/packages/core/main.css' rel='stylesheet' />
+		<link href='../libs/packages/daygrid/main.css' rel='stylesheet' />
+		<link href='../libs/packages/timegrid/main.css' rel='stylesheet' />
+		<link href='../libs/packages/list/main.css' rel='stylesheet' />
+		<script src='../libs/packages/core/main.js'></script>
+		<script src='../libs/packages/interaction/main.js'></script>
+		<script src='../libs/packages/daygrid/main.js'></script>
+		<script src='../libs/packages/timegrid/main.js'></script>
+		<script src='../libs/packages/list/main.js'></script>
+		<link rel="stylesheet" href="css/font.css" type="text/css" />
+		<link rel="stylesheet" href="css/app.css" type="text/css" />
+		<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar1');
+
+    var calendar1 = new FullCalendar.Calendar(calendarEl, {
+
+      plugins: [ 'interaction', 'dayGrid', 'list', 'googleCalendar' ],
+
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listYear'
+      },
+
+      displayEventTime: false, // don't show the time column in list view
+
+      // THIS KEY WON'T WORK IN PRODUCTION!!!
+      // To make your own Google API key, follow the directions here:
+      // http://fullcalendar.io/docs/google_calendar/
+      googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+
+      // US Holidays
+      events: 'en.usa#holiday@group.v.calendar.google.com',
+
+      eventClick: function(arg) {
+        // opens events in a popup window
+        window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
+
+        arg.jsEvent.preventDefault() // don't navigate in main tab
+      },
+
+      loading: function(bool) {
+        document.getElementById('loading').style.display =
+          bool ? 'block' : 'none';
+      }
+
+    });
+
+    calendar1.render();
+  });
+
+
+		</script>
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+			google.charts.load('current', {packages: ['corechart']});
+			google.charts.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+			// Define the chart to be drawn.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Element');
+			data.addColumn('number', 'Percentage');
+			data.addRows([
+			['Finance', 0.70],
+			['Banking', 0.21],
+			['Construction', 0.01],
+			['Technology', 0.02],
+			['Telecomunication', 0.02]
+			]);
+			
+			var options = {backgroundColor: '#f0f3f4', colors: ['#6254b2', '#3289c8', '#27c24c', '#ff4040', '#ffbb3b'],
+  is3D: true};
+
+
+
+
+			// Instantiate and draw the chart.
+			var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+			chart.draw(data, options);
+			}
+		</script>
+	<style>
+  .tabbable-line > .nav-tabs {
+  border: none;
+  margin: 0px;
+}
+.tabbable-line > .nav-tabs > li {
+  margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+  border-bottom: 4px solid #6254b2;
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #6254b2;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  color: #6254b2;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+  border-bottom: 4px solid #6254b2;
+
+  position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+  border: 0;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+  color: #2da02b;
+}
+.tabbable-line > .tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+  padding-bottom: 0;
+}
+
+/* Below tabs mode */
+
+.tabbable-line.tabs-below > .nav-tabs > li {
+  border-top: 4px solid transparent;
+}
+.tabbable-line.tabs-below > .nav-tabs > li > a {
+  margin-top: 0;
+}
+.tabbable-line.tabs-below > .nav-tabs > li:hover {
+  border-bottom: 0;
+  border-top: 4px solid #fbcdcf;
+}
+.tabbable-line.tabs-below > .nav-tabs > li.active {
+  margin-bottom: -2px;
+  border-bottom: 0;
+  border-top: 4px solid #f3565d;
+}
+.tabbable-line.tabs-below > .tab-content {
+  margin-top: -10px;
+  border-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.tabbable-panel {
+  border:1px solid #eee;
+  padding: 10px;
+}
+
+
+
+@media (max-width: 767px) {
+    .table-responsive .dropdown-menu {
+        position: static !important;
+    }
+}
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow: inherit;
+    }
+		</style>
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+ <div class="tab-pane" id="tab_default_5">
+      <div class="table-responsive" >
+   <table id="mytable"ui-jq="dataTable" ui-options="{
+                              aoColumns: [
+                              { mData: 'id' },
+                              { mData: 'nom' },
+                              { mData: 'commande' },
+                              { mData: 'numero' },    
+                              { mData: 'action' }
+                              ]
+                              }" class="table table-striped b-t b-b">
+    <thead>
+     <tr>
+    <th style="width:20%"><center> 	CIP</center></th>
+	<th  style="width:45%"><center>Nom  </center></th>
+    <th  style="width:15%"><center>Code Rembouressement</center></th>
+    <th  style="width:45%"><center>Principe Actif</center></th>
+    <th  style="width:15%"><center>Prix</center></th>
+     
+     </tr>
+    </thead>
+    <tbody>
+     <tr data-expanded="true" th:each="n:${medoc}">
+    
+    <td th:text = "C+${n.CIP}"><center></center></td>
+    <td th:text = "${n.Nom}"><center></center></td>
+    <td th:text = "${n.Code_remb}"><center></center></td>
+    <td th:text = "${n.Princip_actif}"><center></center></td>
+    <td th:text = "${n.Prix}"><center></center></td>
+     </tr>
+    </tbody>
+  
+   </table>	
+  </div>
+    </div>
+</body>
+
+																		<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+																		<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+																		<script src="js/ui-load.js"></script>
+																		<script src="js/ui-jp.config.js"></script>
+																		<script src="js/ui-jp.js"></script>
+																		<script src="js/ui-nav.js"></script>
+																		<script src="js/ui-toggle.js"></script>
+																		<script src="js/ui-client.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc=" crossorigin="anonymous"></script>                                    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script src="js/myjavascript.js"></script>
+
+</html>
