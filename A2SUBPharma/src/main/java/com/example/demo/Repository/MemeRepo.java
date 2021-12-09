@@ -17,6 +17,8 @@ public interface MemeRepo extends JpaRepository<Meme, Long> {
 	@Query("select m from Meme m where m.nom like :x")
 	public List<Meme> chercherMEdoc(@Param("x") String n);
 	
-	List<Meme> findByNomContaining(String username);
+	List<Meme> findByNomContainingIgnoringCase(String username);
+	List<Meme> findByPrincipContainingIgnoringCase(String username);
+	
 }
  

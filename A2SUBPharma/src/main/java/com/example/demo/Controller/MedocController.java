@@ -15,12 +15,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.example.demo.Entity.Image;
 import com.example.demo.Entity.Medoc;
 import com.example.demo.Entity.Meme;
+import com.example.demo.Repository.ImageReposiroty;
 import com.example.demo.Repository.MedocRepository;
 import com.example.demo.Repository.MemeRepo;
+import com.example.demo.Service.ServiceUploadAWS;
 
 @Controller
 public class MedocController {
@@ -30,8 +36,30 @@ public class MedocController {
 	MedocRepository medocReposiroty;
 	@Autowired
 	MemeRepo memeRepository;
+	@Autowired
+	ServiceUploadAWS uploads3;
+	@Autowired
+	ImageReposiroty imageRepository;
 	
-	@GetMapping("/medoc")
+	/*
+	 * @Autowired private AmazonS3 amazonS3;
+	 */
+	
+	
+	@RequestMapping(value="/LoginVrai")
+	public String Login() {
+		return "LoginVrai";
+	}
+	
+
+	@RequestMapping(value="/index")
+	public String index(Model model) {
+		List<Meme> allMedoc = memeRepository.findAll();
+		model.addAttribute("medoc", allMedoc);
+		return "index1";
+	}
+	
+	@RequestMapping("/medoc")
 	public String medoc(Model model){
 		
 		List<Meme> allMedoc = memeRepository.findAll();
@@ -40,11 +68,26 @@ public class MedocController {
 		return "medoc";
 	}
 	
-	@GetMapping("/rechercher")
+	@RequestMapping(value="/import")
+	public String importer() {
+		return "import";
+	}
+	
+	
+	@RequestMapping("/recherchePrincip")
+	public String recherchePrincip(Model model, @RequestParam(name ="princip") String princip){
+		
+		List<Meme> allMedoc = memeRepository.findByPrincipContainingIgnoringCase(princip);
+		model.addAttribute("medoc", allMedoc);
+		
+		return "index1";
+	}
+	
+	@RequestMapping("/rechercher")
 	public String recherche(Model model, @RequestParam(name = "nom") String nom){
 		
 		List<Meme> allMedoc = memeRepository.chercherMEdoc(nom);
-		List<Meme> allMeme = memeRepository.findByNomContaining(nom);
+		List<Meme> allMeme = memeRepository.findByNomContainingIgnoringCase(nom);
 		List<Meme> memeAll = new ArrayList<Meme>();
 		for (Meme meme : allMeme) {
 		  memeAll = 	memeRepository.findByPrincip( meme.getPrincip());
@@ -56,19 +99,24 @@ public class MedocController {
 		model.addAttribute("medoc", memeAll);
 	//	model.addAttribute("medoc", allMedoc);
 		
-		return "medoc";
+		return "index1";
 	}
 	
-	@GetMapping("/getData")
-	public String  loadData() throws IOException {
+	
+	
+	
+	@RequestMapping("/getData")
+	public String  loadData( @RequestParam("ExcelFile") MultipartFile ExcelFile) throws IOException {
 		
 		List<Meme> memes =  new ArrayList<Meme>();
 		
 		
 			
 		
-        FileInputStream excelFile = new FileInputStream(new File(file_name));
-        XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
+     //   FileInputStream excelFile = new FileInputStream(new File(file_name));
+        XSSFWorkbook workbook = new XSSFWorkbook(ExcelFile.getInputStream());
+
+      //  XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
         XSSFSheet worksheet = workbook.getSheetAt(0);
 
         
@@ -89,10 +137,23 @@ public class MedocController {
      
         memeRepository.saveAll(memes);
         System.out.println("omkl");
-                			return "";
+                			return "redirect:/index";
 
 
 		}
+	
+	
+	@RequestMapping(value="/image1")
+	public String importerImage() {
+		return "image1";
+	}
+	
+	/*
+	 * @RequestMapping(value="/saveImage1") public String
+	 * saveImage(@RequestParam("image") MultipartFile image) throws IOException {
+	 * Image im = new Image(); im.setId((long) 1); imageRepository.save(im);
+	 * uploads3.uploadFileToS3Bucet(im, image); return "medoc"; }
+	 */
 		
 	}
 		

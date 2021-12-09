@@ -14,11 +14,7 @@
 		<link href='../libs/packages/daygrid/main.css' rel='stylesheet' />
 		<link href='../libs/packages/timegrid/main.css' rel='stylesheet' />
 		<link href='../libs/packages/list/main.css' rel='stylesheet' />
-		<script src='../libs/packages/core/main.js'></script>
-		<script src='../libs/packages/interaction/main.js'></script>
-		<script src='../libs/packages/daygrid/main.js'></script>
-		<script src='../libs/packages/timegrid/main.js'></script>
-		<script src='../libs/packages/list/main.js'></script>
+	
 		<link rel="stylesheet" href="css/font.css" type="text/css" />
 		<link rel="stylesheet" href="css/app.css" type="text/css" />
 		<script>
@@ -657,9 +653,17 @@ document.addEventListener('DOMContentLoaded', function() {
 																				</div>
 																				<div class="col-sm-4">
 																					<form th:action="@{rechercher}">
-																					<label>Médicament : </label>
+																					<label> Nom Commercial : </label>
 																					<input type="text" name ="nom" class="form-control" placeholder="Entrez le nom du médicament ">
 																					<button>Rechercher</button> </form>
+																				
+																				
+																					<form th:action="@{recherchePrincip}">
+																					<label>Principe Actif : </label>
+																					<input type="text" name ="princip" class="form-control" placeholder="Entrez le principe actif ">
+																					<button>Rechercher</button> </form>
+																																									<button th:href="@{/import}">Importer Fichier</button>
+																					
 																				</div>
 																				
 																				<div class="col-sm-4">
@@ -682,7 +686,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	   <thead style="color:#23b7e5;">
 		  <tr>
 		   <th  style="width:5%"><center>CIP </center></th>
-		   <th  style="width:20%"><center>Nom</center></th>
+		   <th  style="width:20%"><center>Nom Commercial</center></th>
 		   <th  style="width:7%"><center>Code Rembouresement</center></th>
 		   <th  style="width:20%"><center>Principe Actif</center></th>
 		   <th  style="width:5%"><center>Prix</center></th>
@@ -1039,9 +1043,7 @@ document.addEventListener('DOMContentLoaded', function() {
 																		<script src="js/ui-load.js"></script>
 																		<script src="js/ui-jp.config.js"></script>
 																		<script src="js/ui-jp.js"></script>
-																		<script src="js/ui-nav.js"></script>
-																		<script src="js/ui-toggle.js"></script>
-																		<script src="js/ui-client.js"></script>
+																		
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc=" crossorigin="anonymous"></script>                                    
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
