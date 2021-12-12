@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
-  <title>Commander</title>
+  <title>Importer Fichier</title>
   <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="../libs/assets/animate.css/animate.css" type="text/css" />
@@ -11,6 +11,14 @@
   <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="css/font.css" type="text/css" />
   <link rel="stylesheet" href="css/app.css" type="text/css" />
+    <script type="text/javascript">
+
+         function importAlert()  {
+
+              alert("L'importation prendra quelques minutes. Vous serez redirigé à la page d'acceuil dès que l'opération sera terminée");
+         }
+
+      </script>
 </head>
 <body>
 <div style="margin:50px;"></div>
@@ -53,10 +61,10 @@
        <div class="form-group">
   <label class="col-md-7 control-label"></label>
   <div class="col-md-2">
-    <button type="submit" class="btn btn-primary" >Confirmer <span class="glyphicon glyphicon-send"></span></button>
+    <button onclick="importAlert()" type="submit" class="btn btn-primary" >Confirmer <span class="glyphicon glyphicon-send"></span></button>
   </div> 
   <div class="col-md-2">
-    <button class="btn btn-danger"> <a href="javascript:history.back()">Annuler</a>  <span class="glyphicon glyphicon-remove"></span></button>
+    <button class="btn btn-danger"> <a th:href="index">Annuler</a>  <span class="glyphicon glyphicon-remove"></span></button>
   </div> 
   
 </div></div>

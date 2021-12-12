@@ -12,6 +12,7 @@ public class Meme {
 	private String code;
 	private String princip;
 	private Long prix;
+	private String mdpImport;
 	
 	
 	public Meme() {
@@ -46,6 +47,12 @@ public class Meme {
 	}
 	public void setPrix(Long prix) {
 		this.prix = prix;
+	}
+	public String getMdpImport() {
+		return mdpImport;
+	}
+	public void setMdpImport(String mdpImport) {
+		this.mdpImport = mdpImport;
 	}
 
 	

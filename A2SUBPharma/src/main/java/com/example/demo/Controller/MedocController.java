@@ -31,6 +31,7 @@ import com.example.demo.Service.ServiceUploadAWS;
 @Controller
 public class MedocController {
 
+	private String mdpImport ="import";
 	private final String file_name = "C:\\Users\\Public\\Documents\\ListMedocs.xltx";
 	@Autowired
 	MedocRepository medocReposiroty;
@@ -79,6 +80,7 @@ public class MedocController {
 		
 		List<Meme> allMedoc = memeRepository.findByPrincipContainingIgnoringCase(princip);
 		model.addAttribute("medoc", allMedoc);
+		model.addAttribute("princip", princip);
 		
 		return "index1";
 	}
@@ -98,6 +100,7 @@ public class MedocController {
 		
 		model.addAttribute("medoc", memeAll);
 	//	model.addAttribute("medoc", allMedoc);
+		model.addAttribute("nom", nom);
 		
 		return "index1";
 	}
@@ -143,9 +146,21 @@ public class MedocController {
 		}
 	
 	
-	@RequestMapping(value="/image1")
-	public String importerImage() {
-		return "image1";
+	@RequestMapping(value="/data")
+	public String importerImage(@RequestParam("password")String pass, Model model) {
+		if(pass.equals(mdpImport)) {
+			return "import";
+		}
+		else {
+			model.addAttribute("errors", "Mot de passe incorect");
+			return"Login2";
+		}
+	}
+	
+
+	@RequestMapping(value="/Login2")
+	public String Login2 () {
+		return "Login2";
 	}
 	
 	/*
