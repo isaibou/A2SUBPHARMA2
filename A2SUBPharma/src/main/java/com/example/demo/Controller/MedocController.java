@@ -127,11 +127,21 @@ public class MedocController {
             Meme meme = new Meme();
                 
             XSSFRow row = worksheet.getRow(i);
+           
             meme.setCIP((long) row.getCell(0).getNumericCellValue());
+            System.out.println(row.getCell(0).getNumericCellValue());
+            
             meme.setNom(row.getCell(1).getStringCellValue());
+            System.out.println(row.getCell(1).getStringCellValue());
+            
             meme.setCode(row.getCell(2).getStringCellValue());
+            System.out.println(row.getCell(2).getStringCellValue());
+            
             meme.setPrincip(row.getCell(3).getStringCellValue());
+            System.out.println(row.getCell(3).getStringCellValue());
+            
             meme.setPrix((long) row.getCell(4).getNumericCellValue());
+            System.out.println(row.getCell(4).getNumericCellValue());
 
             memes.add(meme);
         }
