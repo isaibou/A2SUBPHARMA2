@@ -47,7 +47,7 @@ http://www.tooplate.com/view/2095-level
                         
                         <nav  class="navbar navbar-expand-lg narbar-light">
                             <a class="navbar-brand mr-auto" th:href="@{/index}">
-                                <img src="img/nibigh.jpeg" alt="Site logo" height="71px">
+                                <img src="img/nibigh.jpeg" alt="Site logo" height="40px">
                                 A2SUPPHARMA
                             </a>
                             <button  style="background-color:blue"type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,7 @@ http://www.tooplate.com/view/2095-level
                                         </div>
                                         <div class="form-group tm-form-element tm-form-element-50">
                                         
-                                            <input name="nom" type="text"  th:text="${nom}" class=form-control id="inputCheckIn"  placeholder="Entrez le nom du médicament">
+                                            <input name="nom" type="text"  th:text="${nom}" class=form-control   placeholder="Entrez le nom du médicament">
                                         </div>
                                        <div class="form-group tm-form-element tm-form-element-2">
                                             <button type="submit" class="btn btn-primary tm-btn-search">RECHERCHER</button>
@@ -99,7 +99,7 @@ http://www.tooplate.com/view/2095-level
                                         </div>
                                         
                                         <div class="form-group tm-form-element tm-form-element-50">
-                                            <input name="princip" type="text" th:text="${princip}"  class="form-control" id="inputCheckOut" placeholder="Entrez le principe actif">
+                                            <input name="princip" type="text" th:text="${princip}"  class="form-control"  placeholder="Entrez le principe actif">
                                         </div>
                                         
                                         <div class="form-group tm-form-element tm-form-element-2">
@@ -137,11 +137,11 @@ http://www.tooplate.com/view/2095-level
 	   </thead>
 	   <tbody>
 		  <tr data-expanded="true" th:each="r:${medoc}">
-		   <td th:text ="${r.CIP}" class="m-n font-thin h5 text-secondary"><center><b></b></center></td> 
-		   <td th:text ="${r.Nom}" class="m-n font-thin h5 text-secondary"><center><b></b></center></td> 
-		   <td th:text ="${r.Code}" class="m-n font-thin h5 text-secondary"><center></center></td> 
-		   <td th:text ="${r.Princip}" class="m-n font-thin h5 text-secondary"><center><span></span></center></td> 
-		   <td th:text ="${r.Prix}" class="m-n font-thin h5 text-secondary"><center></center></td>
+		   <td th:text ="${r.CIP}" class="m-n font-thin h8 text-secondary"><center><b></b></center></td> 
+		   <td th:text ="${r.Nom}" class="m-n font-thin h8 text-secondary"><center><b></b></center></td> 
+		   <td th:text ="${r.Code}" class="m-n font-thin h8 text-secondary"><center></center></td> 
+		   <td th:text ="${r.Princip}" class="m-n font-thin h8 text-secondary"><center><span></span></center></td> 
+		   <td th:text ="${r.Prix}" class="m-n font-thin h8 text-secondary"><center></center></td>
 		
 		   </tr>
 		 </tbody>

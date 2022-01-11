@@ -1,5 +1,6 @@
 package com.example.demo.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,6 +11,7 @@ public class Meme {
 	private Long CIP;
 	private String nom;
 	private String code;
+	@Column(length = 2048)
 	private String princip;
 	private Long prix;
 	private String mdpImport;
