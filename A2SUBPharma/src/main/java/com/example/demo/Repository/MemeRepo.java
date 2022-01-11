@@ -19,6 +19,7 @@ public interface MemeRepo extends JpaRepository<Meme, Long> {
 	
 	List<Meme> findByNomContainingIgnoringCase(String username);
 	List<Meme> findByPrincipContainingIgnoringCase(String username);
+
 	
 }
  

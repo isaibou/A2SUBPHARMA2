@@ -85,22 +85,66 @@ public class MedocController {
 		return "index1";
 	}
 	
+	/*
+	 * @RequestMapping("/rechercher") public String recherche(Model
+	 * model, @RequestParam(name = "nom") String nom){
+	 * 
+	 * List<Meme> allMedoc = memeRepository.chercherMEdoc(nom); List<Meme> allMeme =
+	 * memeRepository.findByNomContainingIgnoringCase(nom); Meme medoc =
+	 * allMeme.get(1); System.out.println( "Nom du medoc oklm"+medoc.getNom());
+	 * 
+	 * 
+	 * 
+	 * 
+	 * List<Meme> memeAll = new ArrayList<Meme>(); for (Meme meme : allMeme) {
+	 * memeAll = memeRepository.findByPrincip( meme.getPrincip());
+	 * System.err.println(meme.getPrincip());
+	 * System.out.println(memeAll.toString()); }
+	 * System.err.println(memeAll.toString());
+	 * 
+	 * model.addAttribute("medoc", memeAll); // model.addAttribute("medoc",
+	 * allMedoc); model.addAttribute("nom", nom);
+	 * 
+	 * return "index1"; }
+	 */
 	@RequestMapping("/rechercher")
 	public String recherche(Model model, @RequestParam(name = "nom") String nom){
 		
-		List<Meme> allMedoc = memeRepository.chercherMEdoc(nom);
 		List<Meme> allMeme = memeRepository.findByNomContainingIgnoringCase(nom);
-		List<Meme> memeAll = new ArrayList<Meme>();
-		for (Meme meme : allMeme) {
-		  memeAll = 	memeRepository.findByPrincip( meme.getPrincip());
-		  System.err.println(meme.getPrincip());
-		 System.out.println(memeAll.toString());
-		}
-		System.err.println(memeAll.toString());
-		
-		model.addAttribute("medoc", memeAll);
-	//	model.addAttribute("medoc", allMedoc);
-		model.addAttribute("nom", nom);
+		Meme medoc = allMeme.get(0);
+		 final String SEPARATEUR = ",";
+		 
+	        String conte = medoc.getPrincip();
+	 
+	        String mots[] = conte.split(SEPARATEUR);
+	        List<Meme> allMedocs = new ArrayList();
+	
+	        	System.err.println("PRINCIPE ACTIF   / "+mots[0]);
+	        List<Meme>  medocsss= memeRepository.findByPrincipContainingIgnoringCase(mots[0]);
+			
+			  try {
+		        	System.err.println("PRINCIPE ACTIF   / "+mots[1]);
+
+				  List<Meme> medocsss1=	  memeRepository.findByPrincipContainingIgnoringCase(mots[1]);
+				  allMedocs.addAll(medocsss1);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			  try {
+		        	System.err.println("PRINCIPE ACTIF   / "+mots[2]);
+
+				  List<Meme> medocsss2=	  memeRepository.findByPrincipContainingIgnoringCase(mots[2]);
+				  allMedocs.addAll(medocsss2);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}			 
+			  allMedocs.addAll(medocsss);
+			 
+	      //  }
+	        model.addAttribute("medoc", allMedocs);
+	        model.addAttribute("nom", nom);
 		
 		return "index1";
 	}
@@ -171,6 +215,23 @@ public class MedocController {
 	@RequestMapping(value="/Login2")
 	public String Login2 () {
 		return "Login2";
+	}
+	
+	@RequestMapping(value="/ex")
+	public void ex() {
+		String pa;
+		List<Meme> medocs = memeRepository.findAll();
+		
+		 final String SEPARATEUR = ",";
+	        String conte = "ACIDE ASCORBIQUE, ZINC     , PARACETAMOL , ALBENDAZOL";
+	 
+	        String mots[] = conte.split(SEPARATEUR);
+	 
+	        for (int i = 0; i < 3; i++) {
+	            System.out.println(mots[i]);
+	        }
+		
+		;
 	}
 	
 	/*
